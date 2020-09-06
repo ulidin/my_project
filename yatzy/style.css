@@ -2,12 +2,17 @@ body {
     background-color: #bad3cb9a;
 }
 
-.head {
+.header {
     margin: 0px;
     border: 0px;
     padding: 0px;
     height: 0px;
     background-color: #bad3cb9a;
+}
+
+tbody {
+    border-collapse: collapse;
+    border: 2px solid black;
 }
 
 th {
@@ -16,7 +21,7 @@ th {
     font-family: verdana;
     font-size: 8em;
     font-weight: 700;
-    color: #f5f5f5;
+    color: #fffffb;
     text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191, 1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4), 1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 60px rgba(16, 16, 16, 0.4);
 }
 
@@ -30,7 +35,7 @@ table {
 }
 
 td {
-    border: 2px solid black;
+    border: 1px solid black;
     min-width: 50px;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -52,7 +57,7 @@ input[type='number'] {
 
 input {
     background-color: inherit;
-    width: 75px;
+    width: 82px;
     height: 25px;
     border: 0;
     padding: 0;
@@ -63,24 +68,29 @@ input {
 
 input:focus {
     outline-style: none;
-    background-color: rgb(255, 200, 80);
+    background-color: rgba(47, 189, 245, 0.678);
 }
 
 .resultArea {
-    background-color: #c9c4c4;
+    background-color: #e2dcdc;
+    border: 2px solid black;
+    padding: 0;
+    margin: -3px;
 }
 
 .resultAreaMenu {
     background-color: #969292;
     font-weight: bold;
+    border: 2px solid black;
 }
 
-td:nth-child(even) {
-    background-color: #969292;
+td:nth-child(2n) {
+    background: #bbb7b7;
 }
 
-td:nth-child(even)>input {
-    background-color: #969292;
+td:nth-child(1) {
+    padding-left: 5px;
+    padding-right: 10px;
 }
 
 #chattRoom {
