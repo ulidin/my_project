@@ -8,164 +8,173 @@
     <title>Document</title>
 </head>
 
+
 <body>
-    <header>
+    <!--<header>
         <h1>Yatzy</h1>
     </header>
-    <textarea name="Chatt rum" id="chattRum" cols="30" rows="10">Chatt rum</textarea>
-
+    <numberarea name="Chatt_room" id="chattRoom" cols="10" rows="25">Chatt rum</numberarea>
+-->
     <table>
+
+        <thead>
+            <tr>
+                <th colspan="5" class="head">Yatzy</th>
+            </tr>
+        </thead>
+
+
         <tbody>
             <tr class="resultArea">
                 <td class="resultAreaMenu">Spelare/Player</td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
+                <td><input type="text" maxlength="12" placeholder="Player 1" class="resultArea"></td>
+                <td><input type="text" maxlength="12" placeholder="Player 2" class="resultArea"></td>
+                <td><input type="text" maxlength="12" placeholder="Player 3" class="resultArea"></td>
+                <td><input type="text" maxlength="12" placeholder="Player 4" class="resultArea"></td>
             </tr>
 
             <tr>
                 <td>Ettor/Ones</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="6"></td>
+                <td><input type="number" min="0" max="6"></td>
+                <td><input type="number" min="0" max="6"></td>
+                <td><input type="number" min="0" max="6"></td>
             </tr>
 
             <tr>
                 <td>Tvåor/Twos</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="12"></td>
+                <td><input type="number" min="0" max="12"></td>
+                <td><input type="number" min="0" max="12"></td>
+                <td><input type="number" min="0" max="12"></td>
             </tr>
 
             <tr>
                 <td>Treor/Threes</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="18"></td>
+                <td><input type="number" min="0" max="18"></td>
+                <td><input type="number" min="0" max="18"></td>
+                <td><input type="number" min="0" max="18"></td>
             </tr>
 
             <tr>
                 <td>Fyror/Fours</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="24"></td>
+                <td><input type="number" min="0" max="24"></td>
+                <td><input type="number" min="0" max="24"></td>
+                <td><input type="number" min="0" max="24"></td>
             </tr>
 
             <tr>
                 <td>Femor/Fives</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="30"></td>
+                <td><input type="number" min="0" max="30"></td>
+                <td><input type="number" min="0" max="30"></td>
+                <td><input type="number" min="0" max="30"></td>
             </tr>
 
             <tr>
                 <td>Sexor/Sixes</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="36"></td>
+                <td><input type="number" min="0" max="36"></td>
+                <td><input type="number" min="0" max="36"></td>
+                <td><input type="number" min="0" max="36"></td>
             </tr>
 
             <tr class="resultArea">
                 <td class="resultAreaMenu">Summa/Sum</td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
+                <td><input type="number" min="0" max="126" class="resultArea"></td>
+                <td><input type="number" min="0" max="126" class="resultArea"></td>
+                <td><input type="number" min="0" max="126" class="resultArea"></td>
+                <td><input type="number" min="0" max="126" class="resultArea"></td>
             </tr>
 
             <tr class="resultArea">
                 <td class="resultAreaMenu">Bonus</td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
+                <td><input type="number" min="0" max="50" class="resultArea"></td>
+                <td><input type="number" min="0" max="50" class="resultArea"></td>
+                <td><input type="number" min="0" max="50" class="resultArea"></td>
+                <td><input type="number" min="0" max="50" class="resultArea"></td>
             </tr>
 
             <tr>
                 <td>Par/Pair</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="12"></td>
+                <td><input type="number" min="0" max="12"></td>
+                <td><input type="number" min="0" max="12"></td>
+                <td><input type="number" min="0" max="12"></td>
             </tr>
 
             <tr>
                 <td>Två par/Two pairs</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="22"></td>
+                <td><input type="number" min="0" max="22"></td>
+                <td><input type="number" min="0" max="22"></td>
+                <td><input type="number" min="0" max="22"></td>
             </tr>
 
             <tr>
                 <td>Tretal/Three of a kind</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="18"></td>
+                <td><input type="number" min="0" max="18"></td>
+                <td><input type="number" min="0" max="18"></td>
+                <td><input type="number" min="0" max="18"></td>
             </tr>
 
             <tr>
                 <td>Fyrtal/Four of a kind</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="24"></td>
+                <td><input type="number" min="0" max="24"></td>
+                <td><input type="number" min="0" max="24"></td>
+                <td><input type="number" min="0" max="24"></td>
             </tr>
 
             <tr>
                 <td>Liten stege/Small straight</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="15"></td>
+                <td><input type="number" min="0" max="15"></td>
+                <td><input type="number" min="0" max="15"></td>
+                <td><input type="number" min="0" max="15"></td>
             </tr>
 
             <tr>
                 <td>Stor stege/Large strike</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="20"></td>
+                <td><input type="number" min="0" max="20"></td>
+                <td><input type="number" min="0" max="20"></td>
+                <td><input type="number" min="0" max="20"></td>
             </tr>
 
             <tr>
                 <td>Kåk/Full house</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="28"></td>
+                <td><input type="number" min="0" max="28"></td>
+                <td><input type="number" min="0" max="28"></td>
+                <td><input type="number" min="0" max="28"></td>
             </tr>
 
             <tr>
                 <td>Chans/Chance</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="36"></td>
+                <td><input type="number" min="0" max="36"></td>
+                <td><input type="number" min="0" max="36"></td>
+                <td><input type="number" min="0" max="36"></td>
             </tr>
 
             <tr>
                 <td>Yatzy</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="number" min="0" max="50"></td>
+                <td><input type="number" min="0" max="50"></td>
+                <td><input type="number" min="0" max="50"></td>
+                <td><input type="number" min="0" max="50"></td>
             </tr>
 
             <tr class="resultArea">
                 <td class="resultAreaMenu">Totalt/Total</td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
-                <td><input type="text" class="resultArea"></td>
+                <td><input type="number" min="0" max="377" class="resultArea"></td>
+                <td><input type="number" min="0" max="377" class="resultArea"></td>
+                <td><input type="number" min="0" max="377" class="resultArea"></td>
+                <td><input type="number" min="0" max="377" class="resultArea"></td>
             </tr>
 
         </tbody>
