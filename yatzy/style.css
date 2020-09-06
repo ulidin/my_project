@@ -21,9 +21,9 @@ th {
 }
 
 table {
+    margin-left: auto;
+    margin-right: auto;
     background-color: white;
-    float: left;
-    margin: 0px 0px 0px 50px;
     border-spacing: 0;
     border-collapse: collapse;
     table-layout: fixed;
@@ -44,15 +44,15 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 
-}
-
 /* Firefox */
+
 input[type='number'] {
     -moz-appearance: textfield;
 }
+
 input {
     background-color: inherit;
-    width: 60px;
+    width: 75px;
     height: 25px;
     border: 0;
     padding: 0;
@@ -60,26 +60,33 @@ input {
     text-align: center;
     font-size: 20px;
 }
+
 input:focus {
     outline-style: none;
     background-color: rgb(255, 200, 80);
 }
+
 .resultArea {
     background-color: #c9c4c4;
 }
+
 .resultAreaMenu {
     background-color: #969292;
     font-weight: bold;
 }
+
 td:nth-child(even) {
     background-color: #969292;
 }
+
 td:nth-child(even)>input {
     background-color: #969292;
 }
+
 #chattRoom {
     margin: -180px 150px -260px 50px;
 }
+
 textarea {
     width: 35%;
     height: 200%;
