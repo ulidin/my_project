@@ -1,0 +1,33 @@
+body {
+    background-color: blanchedalmond;
+}
+
+h1 {
+    text-align: center;
+    color: azure;
+    background-color: #656565;
+    font-family: "Comic Sans MS", cursive, sans-serif, serif;
+}
+
+p {
+    font-family: "Lucida Console", Monaco, monospace, serif;
+}
+
+menu {
+    background-color: aqua;
+}
+
+img {
+    border-color: rgba(135, 175, 173, 0.336);
+    border-width: 10px;
+    border-style: solid;
+}
+
+ul {
+    font-weight: bold;
+}
+
+#linkColor {
+    background-color: #3028285e;
+    color: aliceblue;
+}

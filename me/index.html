@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Georgis sida</title>
+</head>
+
+<body>
+    <h1>Välkommen</h1>
+    <p>Detta är Georgios sida</p>
+    <menu>
+        <li><a href="Min_hobby.html">Min Hobby</a>
+            <a href="Mitt_CV.html">Mitt CV</a></li>
+    </menu>
+
+    <img src="Georgios.jpg" alt="Mig själv">
+
+    <ul>
+        <li>WEBB20</li>
+        <li>LIA</li>
+    </ul>
+
+    <a id="linkColor" href="http://aftonbladet.se">Aftonbladet</a>
+
+    <form action="">
+
+        <!--
+• Namn
+• Lösenord
+• Födelsedatum (datum-väljare)
+• E-post
+• Ålder
+• Personlig presentation
+• Favoritfärg (färg-väljare)
+• Favoritveckodag (dropdown)
+• Mac vs. PC (radio-buttons)
+• TV-serier du sett (check-box)
+-->
+        <label for="name">Name</label>
+        <input id="name" type="text"><br>
+
+        <label for="psw">Password</label>
+        <input id="psw" type="password"><br>
+
+        <label for="email">E-post</label>
+        <input id="email" type="email"><br>
+
+        <label for="age">Ålder</label>
+        <input id="age" type="number" min="0" max="100"><br>
+
+        <label for="ppresentation">Personlig presentation</label><br>
+        <textarea id="ppresentation" maxlenght="140">Om dig...</textarea><br>
+
+        <label for="favcolor">Välj Favoritfärg</label>
+        <select name="" id="favcolor">
+            <option value="blue">Blå</option>
+            <option value="red">Röd</option>
+            <option value="green">Grön</option>
+            <option value="yellow">Gul</option>
+        </select><br>
+
+        <label for="weekday">Välj Favoritveckodag</label>
+        <select name="" id="weekday">
+            <option value="monday">Måndag</option>
+            <option value="tuesday">Tisdag</option>
+            <option value="wednesday">Onsdag</option>
+            <option value="thursday">Torsdag</option>
+            <option value="friday">Fredag</option>
+            <option value="suturday">Lördag</option>
+            <option value="sunday">Söndag</option>
+        </select><br>
+
+        <label for="mac_pc">MAC vs PC</label>
+        <label for="mac">MAC</label><input id="mac" type="radio">
+        <label for="pc">PC</label><input id="pc" type="radio"><br>
+
+        <label for="tv">TV-serier du sett</label><br>
+        <label for="tv">NSCI</label><input id="tv" type="checkbox"><br>
+        <label for="tv">Big bang theory</label><input id="tv" type="checkbox"><br>
+        <label for="tv">Seinfeld</label><input id="tv" type="checkbox"><br>
+        <label for="tv">Nyheter</label><input id="tv" type="checkbox"><br>
+
+    </form>
+
+</body>
+
+</html>
