@@ -2,9 +2,12 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     class Game {
         constructor(questions) {
+            this.index = 0;
             this.questions = [];
             this.set_questions(questions);
             this.start();
+
+            console.log(questions.length);
 
         }
         start() {
@@ -12,66 +15,74 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
 
         print_questions() {
+
             for (let question of this.questions) {
                 question.print();
             }
         }
 
 
-        get_question_by_id(id) {
-            for (let question of this.questions) {
-                if (question.id == id) {
-                    return question;
-                }
-            }
-        }
+        set_questions(questions) {
 
-        get_company_by_name(quest) {
-            for (let question of this.questions) {
-                if (question.quest == quest) {
-                    return question;
-                }
-            }
-        }
-
-
-        set_questions(questions_json) {
-            let questions = JSON.parse(questions_json);
             for (let question of questions) {
                 this.questions.push(new Question(question));
             }
+
         }
 
-        //next_btn(){};
+        nextQuestion() {
 
-        //back_btn(){};
+            if (this.index < this.questions.length) {
+                this.index += 1;
+            }
+            return this.questions[this.index - 1]
+        }
 
-        //new_game_btn(){};
 
     };
 
 
     class Question {
-        constructor(question) {
-            this.id = question.id;
-            this.question = question.quest;
-            this.answer_a = question.answer_a;
-            this.answer_b = question.answer_b;
-            this.answer_c = question.answer_c;
-            this.answer_d = question.answer_d;
-            this.answer_e = question.answer_e;
-            this.answer_f = question.answer_f;
+        constructor(question_json) {
+            this.id = question_json.id;
+            this.question = question_json.question;
+            this.answers = [];
+            this.category = question_json.category;
+            this.difficulty = question_json.difficulty;
+
+            this.answers.push(new Answer(question_json.answers.answer_a, question_json.correct_answers.answer_a_correct));
+            this.answers.push(new Answer(question_json.answers.answer_b, question_json.correct_answers.answer_b_correct));
+            this.answers.push(new Answer(question_json.answers.answer_c, question_json.correct_answers.answer_c_correct));
+            this.answers.push(new Answer(question_json.answers.answer_d, question_json.correct_answers.answer_d_correct));
+            this.answers.push(new Answer(question_json.answers.answer_e, question_json.correct_answers.answer_e_correct));
+            this.answers.push(new Answer(question_json.answers.answer_f, question_json.correct_answers.answer_f_correct));
+
+
         }
         print() {
             console.log("id: " + this.id);
-            console.log("quest: " + this.question);
-            console.log("answer_a: " + this.answer_a);
-            console.log("answer_b: " + this.answer_b);
-            console.log("answer_c: " + this.answer_c);
-            console.log("answer_d: " + this.answer_d);
-            console.log("answer_e: " + this.answer_e);
-            console.log("answer_f: " + this.answer_f);
+            console.log("question: " + this.question);
+
             console.log("----------------------------");
+
+        }
+
+        answers() {
+
+        }
+
+
+
+    }
+
+    class Answer {
+        constructor(answer, correct_answers) {
+            this.answer = answer;
+            this.answer_correct = correct_answers;
+
+
+            // console.log("answer_a: " + this.answer);
+            // console.log("answer_b: " + this.answer_correct);
 
 
         }
@@ -79,55 +90,37 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     }
 
+    let game;
+    let currentQuestion;
+
+    function new_game() {
+        // let game;
+        fetch('https://quizapi.io/api/v1/questions?apiKey=javwwMCD7lG5HQ0D2L01kXHB6llRG5WFwsTkwOwE&limit=10')
+            .then(response => response.json())
+            .then(data => {
+                game = new Game(data);
+            });
+        return game
+
+    };
 
 
+    // let game = new_game();
 
-    let questions = JSON.stringify([{
-            id: 131,
-            quest: "Which character is used to indicate an end tag?",
-            answer_a: "/",
-            answer_b: "<",
-            answer_c: "*",
-            answer_d: "^",
-            answer_e: null,
-            answer_f: null
-
-        },
-        {
-            id: 132,
-            quest: "Which command is used to create an empty file.",
-            answer_a: "mtfile",
-            answer_b: "mkfile",
-            answer_c: "file",
-            answer_d: "touch",
-            answer_e: null,
-            answer_f: null
-
-        },
-        {
-            id: 133,
-            quest: "Which command can introduce clock delay?",
-            answer_a: "sleep",
-            answer_b: "wait",
-            answer_c: "suspend",
-            answer_d: "delay",
-            answer_e: null,
-            answer_f: null
-
-        },
-    ]);
+    let newGameBtn = document.getElementById("new-game-btn");
+    newGameBtn.addEventListener("click", new_game);
 
 
-
-    let game = new Game(questions);
 
     let nextBtn = document.getElementById("next-btn");
-
     nextBtn.addEventListener("click", function(e) {
         console.log("next-btn")
-            //let game = new Game(questions);
-        document.getElementById("question-id").textContent = game.start();
+
+        currentQuestion = game.nextQuestion();
+
+        document.getElementById("question-id").textContent = currentQuestion.question;
 
     });
+
 
 });

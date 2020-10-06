@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     if (chkbox) {
         for (let x = 0; x < chkbox.length; x++) {
-            chkbox[x].style.visibility = "hidden";
+            chkbox[x].style.visibility = "visible";
         }
 
     }
