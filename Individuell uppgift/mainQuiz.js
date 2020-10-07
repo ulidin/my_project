@@ -73,15 +73,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
         }
 
-        setAnswers(answers) {
-
-            for (let answer of answers) {
-                this.answers.push(new Answer(answer));
-                console.log("setAnswers: " + answer);
-            }
-
-        }
-
     }
 
     class Answer {
@@ -104,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     let game;
     let currentQuestion;
-    let currentAnswer;
 
 
     //Function that fetch API data for quiz game
@@ -144,9 +134,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 
 
-
+        //This sends the question to the right element.
         document.getElementById("question-id").textContent = currentQuestion.question;
 
+        //This sends the answer to the right element.
         document.getElementById("answer-id-a").textContent = currentQuestion.answers[0].answer;
         document.getElementById("answer-id-b").textContent = currentQuestion.answers[1].answer;
         document.getElementById("answer-id-c").textContent = currentQuestion.answers[2].answer;
