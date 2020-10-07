@@ -21,12 +21,12 @@ span {
     padding: 0.2rem 0.2rem 0.2rem;
     border-radius: 8px;
     width: 50%;
-    background: rgb(179, 243, 218);
+    /* background: rgb(179, 243, 218); */
     font-size: 15px;
     display: -webkit-inline-box;
 }
 
-input {
+div>input {
     width: 85px;
     margin: 2rem;
     border-radius: 8px;
@@ -76,6 +76,7 @@ table {
     border-radius: 8px;
     background-color: rgb(246, 242, 242);
     max-height: 100px;
+    text-align: center;
 }
 
 .wrapper>div {

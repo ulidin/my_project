@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     //Main Class To run Quiz Game
     class Game {
-        constructor(questions, answers) {
+        constructor(questions) {
             this.index = 0;
             this.questions = [];
             this.setQuestions(questions);
@@ -36,8 +36,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
 
         setQuestions(questions) {
+            let countQuestion = 1;
             for (let question of questions) {
-                this.questions.push(new Question(question));
+                this.questions.push(new Question(question, countQuestion++));
             }
         }
 
@@ -47,16 +48,24 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
             return this.questions[this.index - 1]
         }
+
+        previousQuestion() {
+            if (this.index > 1) {
+                this.index -= 1;
+            }
+            return this.questions[this.index - 1]
+        }
     };
 
 
     class Question {
-        constructor(question_json) {
+        constructor(question_json, index) {
             this.id = question_json.id;
             this.question = question_json.question;
             this.answers = [];
             this.category = question_json.category;
             this.difficulty = question_json.difficulty;
+            this.questionNumber = index;
 
             this.answers.push(new Answer(question_json.answers.answer_a, question_json.correct_answers.answer_a_correct));
             this.answers.push(new Answer(question_json.answers.answer_b, question_json.correct_answers.answer_b_correct));
@@ -72,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             console.log("difficulty: " + this.difficulty);
             console.log("question: " + this.question);
             console.log("classen Question): ", this.answers);
+            console.log("question number: ", this.questionNumber);
             console.log("----------------------------");
         }
     }
@@ -80,12 +90,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
         constructor(answer, correct_answers) {
             this.answer = answer;
             this.answer_correct = correct_answers;
+            this.isChecked = false;
         }
 
-        printAswer() {
+        printAnswer() {
             console.log("Answer classen): ", this.answer);
+            console.log("Answer classen): ", this.isChecked);
             console.log("----------------------------");
         }
+
+
     }
 
 
@@ -122,23 +136,87 @@ document.addEventListener("DOMContentLoaded", function(e) {
     });
 
 
+
+    //Button to go back in the quiz question and answer alternativ
+    let backBtn = document.getElementById("back-btn");
+    backBtn.addEventListener("click", function(e) {
+        currentQuestion = game.previousQuestion();
+
+        hiddenCheckbox();
+        readCheckBoxes();
+        updateQustionCountField();
+
+
+        console.log("back-btn")
+
+
+        //console.log("nextBtn count value: ", currentQuestion.question);
+
+        // This writes in console the question in number
+        printConsoleQuestion();
+
+        //writes the question on screen
+        printQuestion();
+
+    });
+
+
     //Button to get the next quiz question and answer alternativ
     let nextBtn = document.getElementById("next-btn");
     nextBtn.addEventListener("click", function(e) {
-        hiddenCheckbox();
-        console.log("next-btn")
-
         currentQuestion = game.nextQuestion();
 
+        hiddenCheckbox();
+        readCheckBoxes();
+        updateQustionCountField();
+
+        console.log("next-btn")
+
+
+        //console.log("nextBtn count value: ", currentQuestion.question);
+
+        // This writes in console the question in number
+        printConsoleQuestion();
+
+        //writes the question on screen
+        printQuestion();
+
+    });
+
+
+
+    function updateQustionCountField() {
+        document.getElementById("question-count").textContent = currentQuestion.questionNumber + " / " + game.questions.length;
+        console.log("question field: ", currentQuestion.questionNumber);
+
+    }
+
+
+    function printConsoleQuestion() {
+
+        // This writes in console the question in number
+        //console.log("nextBtn count value: ", currentQuestion.question);
 
         //info just for the console to see the result
-        console.log("nextBtn: ", currentQuestion.answers[0].answer);
-        console.log("nextBtn: ", currentQuestion.answers[1].answer);
-        console.log("nextBtn: ", currentQuestion.answers[2].answer);
-        console.log("nextBtn: ", currentQuestion.answers[3].answer);
-        console.log("nextBtn: ", currentQuestion.answers[4].answer);
-        console.log("nextBtn: ", currentQuestion.answers[5].answer);
+        //answers
+        console.log("nextBtn answer: ", currentQuestion.answers[0].answer);
+        console.log("nextBtn answer: ", currentQuestion.answers[1].answer);
+        console.log("nextBtn answer: ", currentQuestion.answers[2].answer);
+        console.log("nextBtn answer: ", currentQuestion.answers[3].answer);
+        console.log("nextBtn answer: ", currentQuestion.answers[4].answer);
+        console.log("nextBtn answer: ", currentQuestion.answers[5].answer);
 
+        //correct answers
+        console.log("nextBtn correct_answers: ", currentQuestion.answers[0].answer_correct);
+        console.log("nextBtn correct_answers: ", currentQuestion.answers[1].answer_correct);
+        console.log("nextBtn correct_answers: ", currentQuestion.answers[2].answer_correct);
+        console.log("nextBtn correct_answers: ", currentQuestion.answers[3].answer_correct);
+        console.log("nextBtn correct_answers: ", currentQuestion.answers[4].answer_correct);
+        console.log("nextBtn correct_answers: ", currentQuestion.answers[5].answer_correct);
+    }
+
+
+    function printQuestion() {
 
         //This sends the question to the right element.
         document.getElementById("question-id").textContent = currentQuestion.question;
@@ -165,10 +243,24 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
         }
 
-        // function myFunction() {
-        //     var x = document.getElementById("myCheck");
-        //     x.checked = true;
-        // }
 
-    });
+
+    }
+
+
+    function readCheckBoxes() {
+        for (let i = 0; i < 6; i++) {
+            chkbox[i].checked = currentQuestion.answers[i].isChecked;
+        }
+    };
+
+
+
+    for (let i = 0; i < 6; i++) {
+        chkbox[i].addEventListener("click", function(e) {
+            currentQuestion.answers[i].isChecked = chkbox[i].checked;
+            console.log("inne i chkboxen: " + currentQuestion.answers[i].isChecked);
+
+        });
+    }
 });
