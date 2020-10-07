@@ -47,6 +47,46 @@ table {
     background: rgb(246, 242, 242);
 }
 
+
+/* .wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.box1 {
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+.box2 {
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+.box3 {
+    grid-column-start: 3;
+    grid-column-end: 3;
+} */
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    border: 0;
+    border-radius: 8px;
+    background-color: rgb(246, 242, 242);
+    max-height: 100px;
+}
+
+.wrapper>div {
+    border: 0;
+    border-radius: 8px;
+    background-color: #dad7d4;
+    padding: 0;
+    color: #0f0f0f;
+    max-height: 100px;
+}
+
 #div-btn,
 #div-head {
     width: 600px;
