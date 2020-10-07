@@ -1,5 +1,17 @@
 document.addEventListener("DOMContentLoaded", function(e) {
 
+    let chkbox = document.getElementsByClassName("chkbox");
+
+    function hiddenCheckbox() {
+        if (chkbox) {
+            for (let x = 0; x < chkbox.length; x++) {
+                chkbox[x].style.visibility = "hidden";
+            }
+        }
+    }
+
+    hiddenCheckbox();
+
     //Main Class To run Quiz Game
     class Game {
         constructor(questions, answers) {
@@ -99,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     //Function that fetch API data for quiz game
     function new_game() {
-        // let game;
+
         fetch('https://quizapi.io/api/v1/questions?apiKey=javwwMCD7lG5HQ0D2L01kXHB6llRG5WFwsTkwOwE&limit=10')
             .then(response => response.json())
             .then(data => {
@@ -111,14 +123,26 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 
 
+
+
     //Button for launch a new quiz game.
     let newGameBtn = document.getElementById("new-game-btn");
-    newGameBtn.addEventListener("click", new_game);
+    newGameBtn.addEventListener("click", function(e) {
+        document.getElementById("question-id").textContent = "";
+        document.getElementById("answer-id-f").textContent = "";
+        document.getElementById("answer-id-a").textContent = "";
+        document.getElementById("answer-id-b").textContent = "";
+        document.getElementById("answer-id-c").textContent = "";
+        document.getElementById("answer-id-d").textContent = "";
+        document.getElementById("answer-id-e").textContent = "";
+        hiddenCheckbox()
+        new_game();
 
-
+    });
     //Button to get the next quiz question and answer alternativ
     let nextBtn = document.getElementById("next-btn");
     nextBtn.addEventListener("click", function(e) {
+        hiddenCheckbox();
         console.log("next-btn")
 
         currentQuestion = game.nextQuestion();
@@ -137,6 +161,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
         //This sends the question to the right element.
         document.getElementById("question-id").textContent = currentQuestion.question;
 
+
+
+        for (let x = 0; x < chkbox.length; x++) {
+            if (currentQuestion.answers[x].answer !== null) {
+
+                chkbox[x].style.visibility = "visible";
+            }
+
+        }
+
         //This sends the answer to the right element.
         document.getElementById("answer-id-a").textContent = currentQuestion.answers[0].answer;
         document.getElementById("answer-id-b").textContent = currentQuestion.answers[1].answer;
@@ -144,9 +178,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
         document.getElementById("answer-id-d").textContent = currentQuestion.answers[3].answer;
         document.getElementById("answer-id-e").textContent = currentQuestion.answers[4].answer;
         document.getElementById("answer-id-f").textContent = currentQuestion.answers[5].answer;
-
-
     });
+
 
 
 });
