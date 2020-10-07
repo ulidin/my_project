@@ -41,7 +41,7 @@ table {
 
 #div-body {
     width: 600px;
-    height: 400px;
+    height: fit-content;
     margin: 2rem;
     border-radius: 8px;
     background: rgb(246, 242, 242);

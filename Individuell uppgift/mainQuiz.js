@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function(e) {
 
     let chkbox = document.getElementsByClassName("chkbox");
+    let answerClass = document.getElementsByClassName("answer-class");
 
     function hiddenCheckbox() {
         if (chkbox) {
-            for (let x = 0; x < chkbox.length; x++) {
+            for (let x = 0; x < 6; x++) {
                 chkbox[x].style.visibility = "hidden";
+                answerClass[x].style.visibility = "hidden";
             }
         }
     }
@@ -143,9 +145,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 
         // for loop to exclude checkboxes with no answer alternativ
-        for (let x = 0; x < chkbox.length; x++) {
+        for (let x = 0; x < 6; x++) {
             if (currentQuestion.answers[x].answer !== null) {
                 chkbox[x].style.visibility = "visible";
+                answerClass[x].style.visibility = "visible";
 
                 //This sends the answer to the right element.
                 document.getElementById("answer-id-a").textContent = currentQuestion.answers[0].answer;
