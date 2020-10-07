@@ -1,20 +1,23 @@
 document.addEventListener("DOMContentLoaded", function(e) {
 
+    //Main Class To run Quiz Game
     class Game {
-        constructor(questions) {
+        constructor(questions, answers) {
             this.index = 0;
             this.questions = [];
-            this.set_questions(questions);
+            this.setQuestions(questions);
+            // this.setAnswers(answers);
             this.start();
 
-            console.log(questions.length);
+            console.log("inne i game kollar längden: ", questions.length);
 
         }
         start() {
-            this.print_questions();
+            this.printQuestions();
+
         }
 
-        print_questions() {
+        printQuestions() {
 
             for (let question of this.questions) {
                 question.print();
@@ -22,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
 
 
-        set_questions(questions) {
+        setQuestions(questions) {
 
             for (let question of questions) {
                 this.questions.push(new Question(question));
@@ -38,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
             return this.questions[this.index - 1]
         }
 
-
     };
 
 
@@ -49,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             this.answers = [];
             this.category = question_json.category;
             this.difficulty = question_json.difficulty;
+
 
             this.answers.push(new Answer(question_json.answers.answer_a, question_json.correct_answers.answer_a_correct));
             this.answers.push(new Answer(question_json.answers.answer_b, question_json.correct_answers.answer_b_correct));
@@ -61,17 +64,23 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
         print() {
             console.log("id: " + this.id);
+            console.log("category: " + this.category);
+            console.log("difficulty: " + this.difficulty);
             console.log("question: " + this.question);
+            console.log("classen Question): ", this.answers);
 
             console.log("----------------------------");
 
         }
 
-        answers() {
+        setAnswers(answers) {
+
+            for (let answer of answers) {
+                this.answers.push(new Answer(answer));
+                console.log("setAnswers: " + answer);
+            }
 
         }
-
-
 
     }
 
@@ -80,19 +89,25 @@ document.addEventListener("DOMContentLoaded", function(e) {
             this.answer = answer;
             this.answer_correct = correct_answers;
 
+        }
 
-            // console.log("answer_a: " + this.answer);
-            // console.log("answer_b: " + this.answer_correct);
+        printAswer() {
+            console.log("Answer classen): ", this.answer);
 
+            console.log("----------------------------");
 
         }
+
 
 
     }
 
     let game;
     let currentQuestion;
+    let currentAnswer;
 
+
+    //Function that fetch API data for quiz game
     function new_game() {
         // let game;
         fetch('https://quizapi.io/api/v1/questions?apiKey=javwwMCD7lG5HQ0D2L01kXHB6llRG5WFwsTkwOwE&limit=10')
@@ -105,20 +120,40 @@ document.addEventListener("DOMContentLoaded", function(e) {
     };
 
 
-    // let game = new_game();
 
+    //Button for launch a new quiz game.
     let newGameBtn = document.getElementById("new-game-btn");
     newGameBtn.addEventListener("click", new_game);
 
 
-
+    //Button to get the next quiz question and answer alternativ
     let nextBtn = document.getElementById("next-btn");
     nextBtn.addEventListener("click", function(e) {
         console.log("next-btn")
 
         currentQuestion = game.nextQuestion();
+        //currentAnswer = new Question(nextAnswer);
+
+        console.log("nextBtn: ", currentQuestion.answers[0].answer);
+        console.log("nextBtn: ", currentQuestion.answers[1].answer);
+        console.log("nextBtn: ", currentQuestion.answers[2].answer);
+        console.log("nextBtn: ", currentQuestion.answers[3].answer);
+        console.log("nextBtn: ", currentQuestion.answers[4].answer);
+        console.log("nextBtn: ", currentQuestion.answers[5].answer);
+
+
+
+
 
         document.getElementById("question-id").textContent = currentQuestion.question;
+
+        document.getElementById("answer-id-a").textContent = currentQuestion.answers[0].answer;
+        document.getElementById("answer-id-b").textContent = currentQuestion.answers[1].answer;
+        document.getElementById("answer-id-c").textContent = currentQuestion.answers[2].answer;
+        document.getElementById("answer-id-d").textContent = currentQuestion.answers[3].answer;
+        document.getElementById("answer-id-e").textContent = currentQuestion.answers[4].answer;
+        document.getElementById("answer-id-f").textContent = currentQuestion.answers[5].answer;
+
 
     });
 
