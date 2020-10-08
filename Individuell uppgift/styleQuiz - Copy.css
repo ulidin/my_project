@@ -26,23 +26,23 @@ span {
     display: -webkit-inline-box;
 }
 
-#player {
-    text-shadow: #dad7d4;
-}
-
 div>input {
-    width: 80px;
-    margin: 1rem;
+    width: 85px;
+    margin: 2rem;
     border-radius: 8px;
     background: rgb(45, 29, 136);
     color: rgb(255, 253, 253);
     font-weight: bold;
 }
 
+table {
+    margin-right: auto;
+}
+
 #div-body {
     width: 600px;
     height: fit-content;
-    margin: 0.2rem 2rem 2rem 2rem;
+    margin: 2rem;
     border-radius: 8px;
     background: rgb(246, 242, 242);
 }
@@ -88,16 +88,10 @@ div>input {
     max-height: 100px;
 }
 
+#div-btn,
 #div-head {
     width: 600px;
-    margin: 2rem 2rem 0.1rem 2rem;
-    border-radius: 8px;
-    background: rgb(246, 242, 242);
-}
-
-#div-btn {
-    width: 600px;
-    margin: .022rem;
+    margin: 2rem;
     border-radius: 8px;
     background: rgb(246, 242, 242);
 }
