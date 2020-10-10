@@ -94,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
 
         printAnswer() {
-            console.log("Answer classen): ", this.answer);
-            console.log("Answer classen): ", this.isChecked);
+            console.log("Answer classen) svars alternativ: ", this.answer);
+            console.log("Answer classen) om det är checkad: ", this.isChecked);
             console.log("----------------------------");
         }
 
@@ -123,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     //Button for launch a new quiz game.
     let newGameBtn = document.getElementById("new-game-btn");
     newGameBtn.addEventListener("click", function(e) {
+        console.log("inne i newGameBtn: ");
         document.getElementById("question-id").textContent = "";
         document.getElementById("answer-id-f").textContent = "";
         document.getElementById("answer-id-a").textContent = "";
@@ -133,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         hiddenCheckbox()
         new_game();
 
+
     });
 
 
@@ -142,15 +144,13 @@ document.addEventListener("DOMContentLoaded", function(e) {
     backBtn.addEventListener("click", function(e) {
         currentQuestion = game.previousQuestion();
 
+        console.log("inne i back-btn:");
+
         hiddenCheckbox();
         readCheckBoxes();
         updateQustionCountField();
 
 
-        console.log("back-btn")
-
-
-        //console.log("nextBtn count value: ", currentQuestion.question);
 
         // This writes in console the question in number
         printConsoleQuestion();
@@ -166,14 +166,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
     nextBtn.addEventListener("click", function(e) {
         currentQuestion = game.nextQuestion();
 
+        console.log("inne i next-btn:");
+
         hiddenCheckbox();
         readCheckBoxes();
         updateQustionCountField();
 
-        console.log("next-btn")
 
 
-        //console.log("nextBtn count value: ", currentQuestion.question);
 
         // This writes in console the question in number
         printConsoleQuestion();
@@ -184,14 +184,26 @@ document.addEventListener("DOMContentLoaded", function(e) {
     });
 
 
+    //Button to finish the game and get the total score
+    let gameFinished = document.getElementById("finish-btn");
+    gameFinished.addEventListener("click", function(e) {
+
+        document.getElementById("total-score").textContent = "10";
+        console.log("Inside FinishGame:");
+        console.log("Now we counting the scores!");
+
+    });
+
+
 
     function updateQustionCountField() {
         document.getElementById("question-count").textContent = currentQuestion.questionNumber + " / " + game.questions.length;
-        console.log("question field: ", currentQuestion.questionNumber);
+        console.log("inne i updateQustionCountField: ", currentQuestion.questionNumber);
+
 
     }
 
-
+    //This function is for printing out on the console the answers and correct answers
     function printConsoleQuestion() {
 
         // This writes in console the question in number
@@ -215,7 +227,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
         console.log("nextBtn correct_answers: ", currentQuestion.answers[5].answer_correct);
     }
 
-
+    //This function exludes from screen the checkboxes and style if there is no content.
+    //It also sends content to the elements.
     function printQuestion() {
 
         //This sends the question to the right element.
@@ -238,24 +251,23 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
                 //Checks if a checkbox is checked
                 if (chkbox[x].checked == true) {
-                    console.log(chkbox[x], "Är checkad");
+                    console.log("Vad är checkad? : ", chkbox[x], "Är checkad");
                 }
             }
         }
 
-
-
     }
 
-
+    //This function reads the status of the checkboxes
     function readCheckBoxes() {
         for (let i = 0; i < 6; i++) {
             chkbox[i].checked = currentQuestion.answers[i].isChecked;
+            console.log("inne i readCheckBoxes: " + chkbox[i].checked);
         }
     };
 
 
-
+    //This remembers what is checked
     for (let i = 0; i < 6; i++) {
         chkbox[i].addEventListener("click", function(e) {
             currentQuestion.answers[i].isChecked = chkbox[i].checked;
@@ -263,4 +275,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
         });
     }
+
+
 });
