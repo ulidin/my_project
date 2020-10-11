@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     let chkbox = document.getElementsByClassName("chkbox");
     let answerClass = document.getElementsByClassName("answer-class");
 
+    //This function hides the checkbox and all the style fields
     function hiddenCheckbox() {
         if (chkbox) {
             for (let x = 0; x < 6; x++) {
@@ -39,12 +40,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
             let countQuestion = 1;
             for (let question of questions) {
                 this.questions.push(new Question(question, countQuestion++));
+                console.log("inside setQuestions: ", this.index);
             }
         }
 
         nextQuestion() {
             if (this.index < this.questions.length) {
                 this.index += 1;
+                console.log("inside nextQuestion: ", this.index);
             }
             return this.questions[this.index - 1]
         }
@@ -54,6 +57,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 this.index -= 1;
             }
             return this.questions[this.index - 1]
+        }
+
+        calculateScore() {
+            let finalScore = 0;
+            for (let question of this.questions) {
+                if (question.validateAnswer()) {
+                    finalScore++;
+                }
+            }
+            return finalScore;
         }
     };
 
@@ -67,12 +80,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
             this.difficulty = question_json.difficulty;
             this.questionNumber = index;
 
-            this.answers.push(new Answer(question_json.answers.answer_a, question_json.correct_answers.answer_a_correct));
-            this.answers.push(new Answer(question_json.answers.answer_b, question_json.correct_answers.answer_b_correct));
-            this.answers.push(new Answer(question_json.answers.answer_c, question_json.correct_answers.answer_c_correct));
-            this.answers.push(new Answer(question_json.answers.answer_d, question_json.correct_answers.answer_d_correct));
-            this.answers.push(new Answer(question_json.answers.answer_e, question_json.correct_answers.answer_e_correct));
-            this.answers.push(new Answer(question_json.answers.answer_f, question_json.correct_answers.answer_f_correct));
+            this.corrAnswers = question_json.correct_answers;
+
+            this.answers.push(new Answer(question_json.answers.answer_a, (question_json.correct_answers.answer_a_correct == "true")));
+            this.answers.push(new Answer(question_json.answers.answer_b, (question_json.correct_answers.answer_b_correct == "true")));
+            this.answers.push(new Answer(question_json.answers.answer_c, (question_json.correct_answers.answer_c_correct == "true")));
+            this.answers.push(new Answer(question_json.answers.answer_d, (question_json.correct_answers.answer_d_correct == "true")));
+            this.answers.push(new Answer(question_json.answers.answer_e, (question_json.correct_answers.answer_e_correct == "true")));
+            this.answers.push(new Answer(question_json.answers.answer_f, (question_json.correct_answers.answer_f_correct == "true")));
         }
 
         print() {
@@ -80,22 +95,38 @@ document.addEventListener("DOMContentLoaded", function(e) {
             console.log("category: " + this.category);
             console.log("difficulty: " + this.difficulty);
             console.log("question: " + this.question);
-            console.log("classen Question): ", this.answers);
+            console.log("classen Question: ", this.answers);
             console.log("question number: ", this.questionNumber);
+            console.log("corrAnswers: ", this.corrAnswers);
             console.log("----------------------------");
         }
-    }
+
+        // Checks if isChecked == answer_correct
+        validateAnswer() {
+            for (let answer of this.answers) {
+                if (answer.isChecked !== answer.answer_correct) {
+                    console.log("Nu blev det fel: ", this.questionNumber);
+                    return false;
+                }
+            }
+            console.log("Nu blev det rätt: ", this.questionNumber);
+            return true
+        }
+
+    };
 
     class Answer {
         constructor(answer, correct_answers) {
             this.answer = answer;
             this.answer_correct = correct_answers;
             this.isChecked = false;
+
+            this.printAnswer();
         }
 
         printAnswer() {
-            console.log("Answer classen) svars alternativ: ", this.answer);
-            console.log("Answer classen) om det är checkad: ", this.isChecked);
+            console.log("Answer classen, svars alternativ: ", this.answer);
+            console.log("Answer classen, om det är checkad: ", this.isChecked);
             console.log("----------------------------");
         }
 
@@ -150,8 +181,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
         readCheckBoxes();
         updateQustionCountField();
 
-
-
         // This writes in console the question in number
         printConsoleQuestion();
 
@@ -173,8 +202,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
         updateQustionCountField();
 
 
-
-
         // This writes in console the question in number
         printConsoleQuestion();
 
@@ -188,9 +215,13 @@ document.addEventListener("DOMContentLoaded", function(e) {
     let gameFinished = document.getElementById("finish-btn");
     gameFinished.addEventListener("click", function(e) {
 
-        document.getElementById("total-score").textContent = "10";
+        document.getElementById("total-score").textContent = game.calculateScore() + " / " + game.questions.length;
+
         console.log("Inside FinishGame:");
-        console.log("Now we counting the scores!");
+        console.log("Now we counting the scores!: ", game.calculateScore());
+
+        //console.log("Inside FinishGame:", currentQuestion.corrAnswers);
+
 
     });
 
