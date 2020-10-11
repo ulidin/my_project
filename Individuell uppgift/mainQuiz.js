@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         document.getElementById("finish-btn").disabled = false;
     }
 
-    //Main Class To run Quiz Game
+    //Main Class of the Quiz Game
     class Game {
         constructor(questions) {
             this.index = 0;
@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
         }
 
+        //This method collects the questions
         setQuestions(questions) {
             let countQuestion = 1;
             for (let question of questions) {
@@ -62,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
         }
 
+        //This method enables the selection of the next question
         nextQuestion() {
             if (this.index < this.questions.length) {
                 this.index += 1;
@@ -70,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             return this.questions[this.index - 1]
         }
 
+        //This method enables the selection to a previous question
         previousQuestion() {
             if (this.index > 1) {
                 this.index -= 1;
@@ -77,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             return this.questions[this.index - 1]
         }
 
+        //This method adds +1 for correct answers for each question.
         calculateScore() {
             let finalScore = 0;
             for (let question of this.questions) {
@@ -133,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     };
 
+    //This class handles the answers, if checked
     class Answer {
         constructor(answer, correct_answers) {
             this.answer = answer;
@@ -174,6 +179,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
     newGameBtn.addEventListener("click", function(e) {
 
         console.log("inne i newGameBtn: ");
+
+        //Clears all content for respective elements
+        document.getElementById("question-count").textContent = "";
+        document.getElementById("total-score").textContent = "";
         document.getElementById("question-id").textContent = "";
         document.getElementById("answer-id-f").textContent = "";
         document.getElementById("answer-id-a").textContent = "";
@@ -181,21 +190,22 @@ document.addEventListener("DOMContentLoaded", function(e) {
         document.getElementById("answer-id-c").textContent = "";
         document.getElementById("answer-id-d").textContent = "";
         document.getElementById("answer-id-e").textContent = "";
+
         hiddenCheckbox()
 
-        let containsPlayerName = document.getElementById("player");
-        if (containsPlayerName.value == "") {
+        //Checks if players name exists. If it does it runs the game. 
+        //If not, an alert is shown.
+        let haveValue = document.getElementById("player");
+        if (haveValue && haveValue.value !== "") {
+            console.log("inne i if satsen...............")
+            new_game();
+
+            buttonEnable();
+
+        } else {
 
             alert("Player name is missing!");
         }
-
-        new_game();
-
-        buttonEnable();
-
-
-
-
 
     });
 
@@ -253,17 +263,17 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
         //console.log("Inside FinishGame:", currentQuestion.corrAnswers);
 
+        buttonDisable();
 
     });
 
 
-
+    //Function to show active question number in play of total questions
     function updateQustionCountField() {
         document.getElementById("question-count").textContent = currentQuestion.questionNumber + " / " + game.questions.length;
         console.log("inne i updateQustionCountField: ", currentQuestion.questionNumber);
-
-
     }
+
 
     //This function is for printing out on the console the answers and correct answers
     function printConsoleQuestion() {
