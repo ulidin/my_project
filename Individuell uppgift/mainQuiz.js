@@ -13,7 +13,25 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     }
 
+
+
     hiddenCheckbox();
+
+
+    function buttonDisable() {
+        document.getElementById("back-btn").disabled = true;
+        document.getElementById("next-btn").disabled = true;
+        document.getElementById("finish-btn").disabled = true;
+    }
+
+    buttonDisable();
+
+
+    function buttonEnable() {
+        document.getElementById("back-btn").disabled = false;
+        document.getElementById("next-btn").disabled = false;
+        document.getElementById("finish-btn").disabled = false;
+    }
 
     //Main Class To run Quiz Game
     class Game {
@@ -154,6 +172,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     //Button for launch a new quiz game.
     let newGameBtn = document.getElementById("new-game-btn");
     newGameBtn.addEventListener("click", function(e) {
+
         console.log("inne i newGameBtn: ");
         document.getElementById("question-id").textContent = "";
         document.getElementById("answer-id-f").textContent = "";
@@ -163,7 +182,19 @@ document.addEventListener("DOMContentLoaded", function(e) {
         document.getElementById("answer-id-d").textContent = "";
         document.getElementById("answer-id-e").textContent = "";
         hiddenCheckbox()
+
+        let containsPlayerName = document.getElementById("player");
+        if (containsPlayerName.value == "") {
+
+            alert("Player name is missing!");
+        }
+
         new_game();
+
+        buttonEnable();
+
+
+
 
 
     });
