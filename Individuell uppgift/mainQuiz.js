@@ -3,8 +3,19 @@ document.addEventListener("DOMContentLoaded", function(e) {
     let chkbox = document.getElementsByClassName("chkbox");
     let answerClass = document.getElementsByClassName("answer-class");
 
+    // //This function hides the checkbox and all the style fields
+    // // function hiddenCheckbox() {
+    // //     if (chkbox) {
+    // //         for (let x = 0; x < 6; x++) {
+    // //             chkbox[x].style.visibility = "hidden";
+    // //             answerClass[x].style.visibility = "hidden";
+    // //         }
+    // //     }
+    // // }
+
+    //Converted to a lambda function
     //This function hides the checkbox and all the style fields
-    function hiddenCheckbox() {
+    let hiddenCheckbox = () => {
         if (chkbox) {
             for (let x = 0; x < 6; x++) {
                 chkbox[x].style.visibility = "hidden";
@@ -14,24 +25,22 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
 
 
-
-    hiddenCheckbox();
-
-
     function buttonDisable() {
         document.getElementById("back-btn").disabled = true;
         document.getElementById("next-btn").disabled = true;
         document.getElementById("finish-btn").disabled = true;
     }
 
-    buttonDisable();
-
-
     function buttonEnable() {
         document.getElementById("back-btn").disabled = false;
         document.getElementById("next-btn").disabled = false;
         document.getElementById("finish-btn").disabled = false;
     }
+
+
+    hiddenCheckbox();
+    buttonDisable();
+
 
     //Main Class of the Quiz Game
     class Game {
@@ -102,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             this.difficulty = question_json.difficulty;
             this.questionNumber = index;
 
-            this.corrAnswers = question_json.correct_answers;
+            // this.corrAnswers = question_json.correct_answers;
 
             this.answers.push(new Answer(question_json.answers.answer_a, (question_json.correct_answers.answer_a_correct == "true")));
             this.answers.push(new Answer(question_json.answers.answer_b, (question_json.correct_answers.answer_b_correct == "true")));
@@ -119,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             console.log("question: " + this.question);
             console.log("classen Question: ", this.answers);
             console.log("question number: ", this.questionNumber);
-            console.log("corrAnswers: ", this.corrAnswers);
+            // console.log("corrAnswers: ", this.corrAnswers);
             console.log("----------------------------");
         }
 
@@ -184,16 +193,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
         document.getElementById("question-count").textContent = "";
         document.getElementById("total-score").textContent = "";
         document.getElementById("question-id").textContent = "";
-        document.getElementById("answer-id-f").textContent = "";
         document.getElementById("answer-id-a").textContent = "";
         document.getElementById("answer-id-b").textContent = "";
         document.getElementById("answer-id-c").textContent = "";
         document.getElementById("answer-id-d").textContent = "";
         document.getElementById("answer-id-e").textContent = "";
+        document.getElementById("answer-id-f").textContent = "";
 
         hiddenCheckbox()
 
-        //Checks if players name exists. If it does it runs the game. 
+        //Checks if players name exists. If it does it runs the game.
         //If not, an alert is shown.
         let haveValue = document.getElementById("player");
         if (haveValue && haveValue.value !== "") {
