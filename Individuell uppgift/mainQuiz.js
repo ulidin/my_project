@@ -1,3 +1,6 @@
+/*----------------------------------------------------------------------
+This is a quiz application where the player gets 10 questions to answer.
+------------------------------------------------------------------------*/
 document.addEventListener("DOMContentLoaded", function(e) {
 
     let chkbox = document.getElementsByClassName("chkbox");
@@ -14,12 +17,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     }
 
+    //Function to disable the buttons
     function buttonDisable() {
         document.getElementById("back-btn").disabled = true;
         document.getElementById("next-btn").disabled = true;
         document.getElementById("finish-btn").disabled = true;
     }
 
+    //Function to enable the buttons
     function buttonEnable() {
         document.getElementById("back-btn").disabled = false;
         document.getElementById("next-btn").disabled = false;
@@ -61,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
         }
 
-        //This method enables the selection of the next question
+        //This method enables selection of the next question
         nextQuestion() {
             if (this.index < this.questions.length) {
                 this.index += 1;
@@ -159,9 +164,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
     let currentQuestion;
 
 
-    //Function that fetch API data for quiz game
+    //Function that fetch API data for game quiz 
     function new_game() {
-
         fetch('https://quizapi.io/api/v1/questions?apiKey=javwwMCD7lG5HQ0D2L01kXHB6llRG5WFwsTkwOwE&limit=10')
             .then(response => response.json())
             .then(data => {
@@ -172,10 +176,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 
 
-    //Button for launch a new quiz game.
+    //Button to launch a new quiz game.
     let newGameBtn = document.getElementById("new-game-btn");
     newGameBtn.addEventListener("click", function(e) {
-
         console.log("inne i newGameBtn: ");
 
         //Clears all content for respective elements
@@ -204,7 +207,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
             alert("Player name is missing!");
         }
-
     });
 
 
