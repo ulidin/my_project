@@ -27,14 +27,20 @@ span {
 }
 
 #player {
+    background-color: #dad7d4;
+    border: 0px solid;
     text-shadow: #dad7d4;
+    text-align: center;
+    color: #b60fcc;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 div>input {
     width: 80px;
     margin: 1rem;
     border-radius: 8px;
-    background: rgb(45, 29, 136);
+    background: #304fa1;
     color: rgb(255, 253, 253);
     font-weight: bold;
 }
@@ -46,27 +52,6 @@ div>input {
     border-radius: 8px;
     background: rgb(246, 242, 242);
 }
-
-
-/* .wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.box1 {
-    grid-column-start: 1;
-    grid-column-end: 1;
-}
-
-.box2 {
-    grid-column-start: 2;
-    grid-column-end: 2;
-}
-
-.box3 {
-    grid-column-start: 3;
-    grid-column-end: 3;
-} */
 
 .wrapper {
     display: grid;
@@ -84,7 +69,7 @@ div>input {
     border-radius: 8px;
     background-color: #dad7d4;
     padding: 0;
-    color: #0f0f0f;
+    color: #0a42dd;
     max-height: 100px;
 }
 
@@ -93,6 +78,8 @@ div>input {
     margin: 2rem 2rem 0.1rem 2rem;
     border-radius: 8px;
     background: rgb(246, 242, 242);
+    text-align: center;
+    color: #0a42dd;
 }
 
 #div-btn {
@@ -100,4 +87,5 @@ div>input {
     margin: .022rem;
     border-radius: 8px;
     background: rgb(246, 242, 242);
+    text-align: center;
 }

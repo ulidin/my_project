@@ -3,16 +3,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
     let chkbox = document.getElementsByClassName("chkbox");
     let answerClass = document.getElementsByClassName("answer-class");
 
-    // //This function hides the checkbox and all the style fields
-    // // function hiddenCheckbox() {
-    // //     if (chkbox) {
-    // //         for (let x = 0; x < 6; x++) {
-    // //             chkbox[x].style.visibility = "hidden";
-    // //             answerClass[x].style.visibility = "hidden";
-    // //         }
-    // //     }
-    // // }
-
     //Converted to a lambda function
     //This function hides the checkbox and all the style fields
     let hiddenCheckbox = () => {
@@ -23,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
         }
     }
-
 
     function buttonDisable() {
         document.getElementById("back-btn").disabled = true;
